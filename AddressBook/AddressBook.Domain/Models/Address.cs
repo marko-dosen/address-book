@@ -1,4 +1,5 @@
 ﻿using System;
+using AddressBook.Domain.Helpers;
 
 namespace AddressBook.Domain.Models
 {
@@ -20,11 +21,12 @@ namespace AddressBook.Domain.Models
 
         public Address(string addressLine1, string addressLine2, string addressLine3, string city, string state, string zip, string country)
         {
-            ThrowIfNullOrWhitespace(addressLine1, "Address Line 1 can not be null or white space");
-            ThrowIfNullOrWhitespace(city, "City can not be null or white space");
-            ThrowIfNullOrWhitespace(state, "State can not be null or white space");
-            ThrowIfNullOrWhitespace(zip, "Zip can not be null or white space");
-            ThrowIfNullOrWhitespace(country, "Country can not be null or white space");
+            
+            StringHelper.ThrowIfNullOrWhitespace(addressLine1, "Address Line 1 can not be null or white space");
+            StringHelper.ThrowIfNullOrWhitespace(city, "City can not be null or white space");
+            StringHelper.ThrowIfNullOrWhitespace(state, "State can not be null or white space");
+            StringHelper.ThrowIfNullOrWhitespace(zip, "Zip can not be null or white space");
+            StringHelper.ThrowIfNullOrWhitespace(country, "Country can not be null or white space");
 
             AddressLine1 = addressLine1;
             AddressLine2 = addressLine2;
@@ -66,11 +68,5 @@ namespace AddressBook.Domain.Models
 
         public static bool operator !=(Address x, Address y)
             => !Equals(x, y);
-
-        private void ThrowIfNullOrWhitespace(string value, string message)
-        {
-            if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentNullException(message);
-        }
     }
 }
