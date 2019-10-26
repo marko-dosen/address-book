@@ -82,20 +82,11 @@ namespace AddressBook.Domain.Tests.Models
         }
 
         [Test]
-        public void Should_return_true_when_comparing_two_equal_contacts()
+        public void Should_return_true_when_comparing_contacts_with_same_id()
         {
-            var contact1 = new Contact("Marko Markovic", DateTime.Now, _address, CreatePhoneNumbers());
-            var contact2 = new Contact("Marko Markovic", DateTime.Now, _address, CreatePhoneNumbers());
-
-            Assert.True(contact1.Equals(contact2));
-            Assert.True(contact1 == contact2);
-        }
-
-        [Test]
-        public void Should_return_true_when_comparing_contacts_with_same_name_and_address()
-        {
-            var contact1 = new Contact("Marko Markovic", DateTime.Now, _address, CreatePhoneNumbers());
-            var contact2 = new Contact("Marko Markovic", DateTime.UtcNow, _address, new[] { "123", "321" });
+            var id = Guid.NewGuid();
+            var contact1 = new Contact(id, "Marko Markovic", DateTime.Now, _address, CreatePhoneNumbers());
+            var contact2 = new Contact(id, "Pero Peric", DateTime.UtcNow, _address, new[] { "123", "321" });
 
             Assert.True(contact1.Equals(contact2));
             Assert.True(contact1 == contact2);

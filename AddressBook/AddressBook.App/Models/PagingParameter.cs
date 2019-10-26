@@ -13,13 +13,13 @@
         public int PageSize
         {
             get => _pageSize;
-            set => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
+            set => _pageSize = value > MaxPageSize || value < 1 ? MaxPageSize : value;
         }
 
         public int PageNumber
         {
             get => _pageNumber;
-            set => _pageNumber = (value < 1) ? 1 : value;
+            set => _pageNumber = value < 1 ? 1 : value;
         }
 
     }

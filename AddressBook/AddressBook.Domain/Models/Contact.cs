@@ -1,25 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using AddressBook.Domain.Helpers;
+using AddressBook.Domain.Kernel;
 
 namespace AddressBook.Domain.Models
 {
     public class Contact
+        : Entity<Guid>
     {
-        public Guid Id { get; }
         public string Name { get; }
 
         public DateTime DateOfBirth { get; }
 
         public Address Address { get; }
 
-        public List<string> PhoneNumbers { get; }
-
-        private Contact(Guid id)
-        {
-            Id = id;
-            PhoneNumbers = new List<string>();
-        }
+        public List<string> PhoneNumbers { get; } = new List<string>();
 
         public Contact(string name, DateTime dateOfBirth, Address address, string[] phoneNumbers)
             : this(Guid.NewGuid(), name, dateOfBirth, address, phoneNumbers)
@@ -27,7 +22,7 @@ namespace AddressBook.Domain.Models
         }
 
         public Contact(Guid id, string name, DateTime dateOfBirth, Address address, string[] phoneNumbers)
-            : this(id)
+            : base(id)
         {
             StringHelper.ThrowIfNullOrWhitespace(name, "Name can not be null or white space");
             ThrowIfNull(address, "Address can not be null");
@@ -37,24 +32,6 @@ namespace AddressBook.Domain.Models
             Address = address;
             PhoneNumbers.AddRange(phoneNumbers);
         }
-
-        public override bool Equals(object obj)
-        {
-            var contact = obj as Contact;
-            if (contact == null)
-                return false;
-            return contact.Name == Name
-                   && contact.Address == Address;
-        }
-
-        public override int GetHashCode()
-            => new { Name, Address }.GetHashCode();
-
-        public static bool operator ==(Contact x, Contact y)
-            => Equals(x, y);
-
-        public static bool operator !=(Contact x, Contact y)
-            => !Equals(x, y);
 
         private void ThrowIfNull(object value, string message)
         {

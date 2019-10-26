@@ -154,7 +154,6 @@ namespace AddressBook.Persistence.Tests
 
             _sut.UpdateContact(contact2);
             Contact contactFromDb = _sut.GetContact(id);
-            Assert.False(contact1 == contact2);
             contactFromDb.Should().BeEquivalentTo(contact2);
         }
 
@@ -165,8 +164,8 @@ namespace AddressBook.Persistence.Tests
             Random random = new Random();
             PagingParameter paging = new PagingParameter
             {
-                PageSize = random.Next(),
-                PageNumber = random.Next()
+                PageSize = random.Next(100),
+                PageNumber = random.Next(100)
             };
 
             _sut.GetContacts(paging);

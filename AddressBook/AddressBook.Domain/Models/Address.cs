@@ -1,9 +1,11 @@
 ﻿using System;
 using AddressBook.Domain.Helpers;
+using AddressBook.Domain.Kernel;
 
 namespace AddressBook.Domain.Models
 {
     public class Address
+        : ValueObject<Address>
     {
         public string AddressLine1 { get; }
 
@@ -21,7 +23,7 @@ namespace AddressBook.Domain.Models
 
         public Address(string addressLine1, string addressLine2, string addressLine3, string city, string state, string zip, string country)
         {
-            
+
             StringHelper.ThrowIfNullOrWhitespace(addressLine1, "Address Line 1 can not be null or white space");
             StringHelper.ThrowIfNullOrWhitespace(city, "City can not be null or white space");
             StringHelper.ThrowIfNullOrWhitespace(state, "State can not be null or white space");
@@ -36,37 +38,5 @@ namespace AddressBook.Domain.Models
             Zip = zip;
             Country = country;
         }
-
-        public override bool Equals(object obj)
-        {
-            var address = obj as Address;
-            if (address == null)
-                return false;
-            return AddressLine1 == address.AddressLine1
-                   && AddressLine2 == address.AddressLine2
-                   && AddressLine3 == address.AddressLine3
-                   && City == address.City
-                   && State == address.State
-                   && Zip == address.Zip
-                   && Country == address.Country;
-        }
-
-        public override int GetHashCode()
-            => new
-            {
-                AddressLine1,
-                AddressLine2,
-                AddressLine3,
-                City,
-                State,
-                Zip,
-                Country
-            }.GetHashCode();
-
-        public static bool operator ==(Address x, Address y)
-            => Equals(x, y);
-
-        public static bool operator !=(Address x, Address y)
-            => !Equals(x, y);
     }
 }
