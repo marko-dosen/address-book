@@ -1,17 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using AddressBook.App.Services;
+using AddressBook.Filters;
+using AddressBook.Persistence;
 using AddressBook.Persistence.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace AddressBook
 {
@@ -28,9 +24,18 @@ namespace AddressBook
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMvc( opt => opt.Filters.Add( typeof( ValidateModelStateAttribute ) ) )
+                .AddNewtonsoftJson(options=> options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddDbContext<AddressBookContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("AddressBookDb")));
+
+            RegisterDependencies(services);
+        }
+
+        private void RegisterDependencies(IServiceCollection services)
+        {
+            services.AddScoped<IContactRepository, ContactRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

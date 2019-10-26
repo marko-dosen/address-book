@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AddressBook.Contracts\AddressBook.Contracts.csproj" />
     <ProjectReference Include="..\AddressBook.Domain\AddressBook.Domain.csproj" />
   </ItemGroup>
 
