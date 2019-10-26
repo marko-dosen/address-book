@@ -6,7 +6,7 @@ namespace AddressBook.Domain.Models
 {
     public class Contact
     {
-        public  Guid Id { get; }
+        public Guid Id { get; }
         public string Name { get; }
 
         public DateTime DateOfBirth { get; }
@@ -22,7 +22,12 @@ namespace AddressBook.Domain.Models
         }
 
         public Contact(string name, DateTime dateOfBirth, Address address, string[] phoneNumbers)
-            : this(Guid.NewGuid())
+            : this(Guid.NewGuid(), name, dateOfBirth, address, phoneNumbers)
+        {
+        }
+
+        public Contact(Guid id, string name, DateTime dateOfBirth, Address address, string[] phoneNumbers)
+            : this(id)
         {
             StringHelper.ThrowIfNullOrWhitespace(name, "Name can not be null or white space");
             ThrowIfNull(address, "Address can not be null");

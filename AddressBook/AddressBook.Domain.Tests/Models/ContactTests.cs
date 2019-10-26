@@ -28,7 +28,7 @@ namespace AddressBook.Domain.Tests.Models
         }
 
         [Test]
-        public void Should_have_correct_id()
+        public void Should_have_not_empty_id()
         {
             Assert.AreNotEqual(Guid.Empty, _sut.Id);
         }

@@ -15,6 +15,8 @@ namespace AddressBook.Contracts.Models
         [Required]
         public Address Address { get; set; }
 
-        public string[] PhoneNumbers { get; set; }
+        [Required]
+        [MinLength(1)]
+        public string[] PhoneNumbers { get; set; } = new string[0];
     }
 }
