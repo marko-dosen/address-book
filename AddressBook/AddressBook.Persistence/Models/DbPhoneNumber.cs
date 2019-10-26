@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AddressBook.Persistence.Models
 {
@@ -11,7 +12,7 @@ namespace AddressBook.Persistence.Models
         [Column (TypeName = "VARCHAR(30)")]
         public string Value { get; set; }
 
-        public int ContactId { get; set; }
+        public Guid ContactId { get; set; }
 
         public virtual DbContact Contact { get; set; }
     }

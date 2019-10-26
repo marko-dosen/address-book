@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook.Contracts", "Ad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook.Persistence", "AddressBook.Persistence\AddressBook.Persistence.csproj", "{C422CE8A-C060-44DA-BB59-9577F23157B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook.Persistence.Tests", "AddressBook.Persistence.Tests\AddressBook.Persistence.Tests.csproj", "{5F90C65F-8417-4021-9024-A754C3DB4B2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook.App", "AddressBook.App\AddressBook.App.csproj", "{A0789E05-F76C-4900-A421-6FFDA7AB7B4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{C422CE8A-C060-44DA-BB59-9577F23157B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C422CE8A-C060-44DA-BB59-9577F23157B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C422CE8A-C060-44DA-BB59-9577F23157B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F90C65F-8417-4021-9024-A754C3DB4B2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F90C65F-8417-4021-9024-A754C3DB4B2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F90C65F-8417-4021-9024-A754C3DB4B2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F90C65F-8417-4021-9024-A754C3DB4B2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0789E05-F76C-4900-A421-6FFDA7AB7B4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0789E05-F76C-4900-A421-6FFDA7AB7B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0789E05-F76C-4900-A421-6FFDA7AB7B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0789E05-F76C-4900-A421-6FFDA7AB7B4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

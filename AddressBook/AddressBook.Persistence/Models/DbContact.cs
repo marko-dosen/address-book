@@ -7,9 +7,7 @@ namespace AddressBook.Persistence.Models
     [Table("Contact")]
     public class DbContact
     {
-        public int Id { get; set; }
-
-        public Guid Reference { get; set; }
+        public Guid Id { get; set; }
 
         [Column(TypeName = "VARCHAR(100)")]
         public string Name { get; set; }

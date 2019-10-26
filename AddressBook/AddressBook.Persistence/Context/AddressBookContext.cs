@@ -25,7 +25,10 @@ namespace AddressBook.Persistence.Context
         private void MapContacts(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<DbContact>()
-                .HasIndex(c => c.Reference).IsUnique();
+                .HasKey(c => c.Id);
+
+            modelBuilder.Entity<DbContact>()
+                .HasIndex(c => c.Id).IsUnique();
 
             modelBuilder.Entity<DbContact>()
                 .HasIndex(c => new
@@ -42,7 +45,7 @@ namespace AddressBook.Persistence.Context
 
 
             modelBuilder.Entity<DbContact>()
-                .Property(p => p.Reference)
+                .Property(p => p.Id)
                 .IsRequired();
             modelBuilder.Entity<DbContact>()
                 .Property(p => p.AddressLine1)
