@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using AddressBook.App.Exceptions;
 using AddressBook.App.Models;
@@ -26,7 +25,6 @@ namespace AddressBook.Persistence
 
         public Contact GetContact(Guid id)
         {
-
             DbContact contact = _context.Contacts
                 .Include(c => c.PhoneNumbers).FirstOrDefault(c => c.Id == id);
             if (contact == default)
@@ -34,12 +32,26 @@ namespace AddressBook.Persistence
             return contact.CreateDomainContact();
         }
 
-        public IEnumerable<Contact> GetContacts(Page pagination)
+        public ContactsWithPagingInfo GetContacts(PagingParameter pagination)
         {
-            throw new NotImplementedException();
+            DbContact[] contacts = _context.Contacts.Skip((pagination.PageNumber - 1) * pagination.PageSize)
+                .Take(pagination.PageSize).Include(c => c.PhoneNumbers).ToArray();
+
+            int count = _context.Contacts.Count();
+            List<Contact> result = new List<Contact>();
+            foreach (DbContact contact in contacts)
+            {
+                result.Add(contact.CreateDomainContact());
+            }
+            return new ContactsWithPagingInfo
+            {
+                Contacts = result,
+                PageSize = pagination.PageSize,
+                PageNumber = pagination.PageNumber,
+                Total = count
+            };
         }
 
-        //TODO: Look into how to extract this to a reusable method.
         public void InsertContact(Contact contact)
         {
             DbContact dbContact = _context.Contacts

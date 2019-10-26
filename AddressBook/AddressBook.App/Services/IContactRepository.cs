@@ -9,7 +9,7 @@ namespace AddressBook.App.Services
     {
         Contact GetContact(Guid id);
 
-        IEnumerable<Contact> GetContacts(Page pagination);
+        ContactsWithPagingInfo GetContacts(PagingParameter pagination);
 
         void InsertContact(Contact contact);
 

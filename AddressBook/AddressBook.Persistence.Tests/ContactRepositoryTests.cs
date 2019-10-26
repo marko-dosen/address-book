@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using AddressBook.App.Exceptions;
+using AddressBook.App.Models;
 using AddressBook.App.Services;
 using AddressBook.Domain.Models;
 using AddressBook.Persistence.Context;
@@ -154,6 +156,46 @@ namespace AddressBook.Persistence.Tests
             Contact contactFromDb = _sut.GetContact(id);
             Assert.False(contact1 == contact2);
             contactFromDb.Should().BeEquivalentTo(contact2);
+        }
+
+        [Test]
+        [Rollback]
+        public void Should_be_able_to_get_contacts_for_any_pagination()
+        {
+            Random random = new Random();
+            PagingParameter paging = new PagingParameter
+            {
+                PageSize = random.Next(),
+                PageNumber = random.Next()
+            };
+
+            _sut.GetContacts(paging);
+        }
+
+        [Test]
+        [Rollback]
+        public void Should_get_correct_number_of_contacts_with_pagination()
+        {
+            PagingParameter paging = new PagingParameter
+            {
+                PageSize = 2,
+                PageNumber = 1
+            };
+
+            for (int i = 0; i < 3; i++)
+                _sut.InsertContact(CreateContactWithUniqueName(Guid.NewGuid()));
+
+            Assert.AreEqual(2, _sut.GetContacts(paging).Contacts.Count());
+        }
+
+        [Test]
+        [Rollback]
+        public void Should_set_total_property_after_getting_contacts()
+        {
+            for (int i = 0; i < 1; i++)
+                _sut.InsertContact(CreateContactWithUniqueName(Guid.NewGuid()));
+
+            Assert.Greater(_sut.GetContacts(new PagingParameter()).Total, 0);
         }
 
         private static Contact CreateContactWithUniqueName(Guid id)
