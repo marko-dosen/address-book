@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook", "AddressBook\AddressBook.csproj", "{1B4D9012-11AB-40BE-B27A-79865895828A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressBook", "AddressBook\AddressBook.csproj", "{1B4D9012-11AB-40BE-B27A-79865895828A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook.Domain", "AddressBook.Domain\AddressBook.Domain.csproj", "{227C44A3-B375-4CDD-850D-95938C9532B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressBook.Domain", "AddressBook.Domain\AddressBook.Domain.csproj", "{227C44A3-B375-4CDD-850D-95938C9532B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook.Domain.Tests", "AddressBook.Domain.Tests\AddressBook.Domain.Tests.csproj", "{D1DF57D3-89DD-4E18-AFB0-E7402D1FFFCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressBook.Domain.Tests", "AddressBook.Domain.Tests\AddressBook.Domain.Tests.csproj", "{D1DF57D3-89DD-4E18-AFB0-E7402D1FFFCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook.Contracts", "AddressBook.Contracts\AddressBook.Contracts.csproj", "{2EA7B11B-D395-443C-8301-9F084DC4DF9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{D1DF57D3-89DD-4E18-AFB0-E7402D1FFFCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1DF57D3-89DD-4E18-AFB0-E7402D1FFFCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1DF57D3-89DD-4E18-AFB0-E7402D1FFFCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EA7B11B-D395-443C-8301-9F084DC4DF9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EA7B11B-D395-443C-8301-9F084DC4DF9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EA7B11B-D395-443C-8301-9F084DC4DF9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EA7B11B-D395-443C-8301-9F084DC4DF9F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
