@@ -4,6 +4,7 @@ using AddressBook.App.Exceptions;
 using AddressBook.App.Factories;
 using AddressBook.App.Models;
 using AddressBook.Contracts.Models;
+using AddressBook.Hubs;
 using AddressBook.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
@@ -18,9 +19,9 @@ namespace AddressBook.Controllers
     public class ContactController : ControllerBase
     {
         private readonly IUseCaseFactory _useCaseFactory;
-        private readonly ContactHub _hub;
+        private readonly IHub<ContactHub> _hub;
 
-        public ContactController(IUseCaseFactory useCaseFactory, ContactHub hub)
+        public ContactController(IUseCaseFactory useCaseFactory, IHub<ContactHub> hub)
         {
             _useCaseFactory = useCaseFactory;
             _hub = hub;
@@ -66,7 +67,7 @@ namespace AddressBook.Controllers
             {
                 ContactWithId result = _useCaseFactory.CreateContactUseCase().Execute(contact);
                 var resourcePath = new Uri($"{Request.GetDisplayUrl()}/{result.Id}");
-                await _hub.SendUpdate(MessageType.ContactCreate, result);
+                await _hub.SendUpdateAsync(MessageType.ContactCreate, result);
                 return Created(resourcePath, result);
             }
             catch (ContactAlreadyExistsException e)

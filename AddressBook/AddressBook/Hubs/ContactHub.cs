@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.SignalR;
 namespace AddressBook.Hubs
 {
     public class ContactHub
-        : Hub
+        : Hub, IHub<ContactHub>
     {
         private readonly IHubContext<ContactHub> _context;
 
@@ -14,7 +14,7 @@ namespace AddressBook.Hubs
             _context = context;
         }
 
-        public async Task SendUpdate(MessageType type, object payload)
+        public async Task SendUpdateAsync(MessageType type, object payload)
         {
             await _context.Clients.All.SendAsync(type.ToString(), payload);
         }

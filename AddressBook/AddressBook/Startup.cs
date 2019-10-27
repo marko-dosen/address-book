@@ -41,7 +41,7 @@ namespace AddressBook
         {
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IUseCaseFactory, UseCaseFactory>();
-            services.AddSingleton<ContactHub>();
+            services.AddSingleton<IHub<ContactHub>, ContactHub>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
