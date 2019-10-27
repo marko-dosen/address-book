@@ -9,13 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressBook.Domain", "Addre
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressBook.Domain.Tests", "AddressBook.Domain.Tests\AddressBook.Domain.Tests.csproj", "{D1DF57D3-89DD-4E18-AFB0-E7402D1FFFCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook.Contracts", "AddressBook.Contracts\AddressBook.Contracts.csproj", "{2EA7B11B-D395-443C-8301-9F084DC4DF9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressBook.Contracts", "AddressBook.Contracts\AddressBook.Contracts.csproj", "{2EA7B11B-D395-443C-8301-9F084DC4DF9F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook.Persistence", "AddressBook.Persistence\AddressBook.Persistence.csproj", "{C422CE8A-C060-44DA-BB59-9577F23157B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressBook.Persistence", "AddressBook.Persistence\AddressBook.Persistence.csproj", "{C422CE8A-C060-44DA-BB59-9577F23157B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook.Persistence.Tests", "AddressBook.Persistence.Tests\AddressBook.Persistence.Tests.csproj", "{5F90C65F-8417-4021-9024-A754C3DB4B2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressBook.Persistence.Tests", "AddressBook.Persistence.Tests\AddressBook.Persistence.Tests.csproj", "{5F90C65F-8417-4021-9024-A754C3DB4B2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AddressBook.App", "AddressBook.App\AddressBook.App.csproj", "{A0789E05-F76C-4900-A421-6FFDA7AB7B4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AddressBook.App", "AddressBook.App\AddressBook.App.csproj", "{A0789E05-F76C-4900-A421-6FFDA7AB7B4C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "signalR", "signalR", "{26150212-B9DC-4A7A-B321-FD8AAA8F3755}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "SignalR\Client\Client.csproj", "{084F8628-45CC-4DEA-A841-C9912141FF0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,9 +55,16 @@ Global
 		{A0789E05-F76C-4900-A421-6FFDA7AB7B4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0789E05-F76C-4900-A421-6FFDA7AB7B4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0789E05-F76C-4900-A421-6FFDA7AB7B4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{084F8628-45CC-4DEA-A841-C9912141FF0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{084F8628-45CC-4DEA-A841-C9912141FF0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{084F8628-45CC-4DEA-A841-C9912141FF0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{084F8628-45CC-4DEA-A841-C9912141FF0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{084F8628-45CC-4DEA-A841-C9912141FF0C} = {26150212-B9DC-4A7A-B321-FD8AAA8F3755}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4CA0C33D-C8D6-4B67-906A-7005ACF65D5B}

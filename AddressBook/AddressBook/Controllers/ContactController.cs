@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Threading.Tasks;
 using AddressBook.App.Exceptions;
 using AddressBook.App.Factories;
 using AddressBook.App.Models;
 using AddressBook.Contracts.Models;
+using AddressBook.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using ContactHub = AddressBook.Hubs.ContactHub;
 
 namespace AddressBook.Controllers
 {
@@ -15,10 +18,12 @@ namespace AddressBook.Controllers
     public class ContactController : ControllerBase
     {
         private readonly IUseCaseFactory _useCaseFactory;
+        private readonly ContactHub _hub;
 
-        public ContactController(IUseCaseFactory useCaseFactory)
+        public ContactController(IUseCaseFactory useCaseFactory, ContactHub hub)
         {
             _useCaseFactory = useCaseFactory;
+            _hub = hub;
         }
 
         [HttpGet]
@@ -55,12 +60,13 @@ namespace AddressBook.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(Contact contact)
+        public async Task<IActionResult> Post(Contact contact)
         {
             try
             {
                 ContactWithId result = _useCaseFactory.CreateContactUseCase().Execute(contact);
                 var resourcePath = new Uri($"{Request.GetDisplayUrl()}/{result.Id}");
+                await _hub.SendUpdate(MessageType.ContactCreate, result);
                 return Created(resourcePath, result);
             }
             catch (ContactAlreadyExistsException e)

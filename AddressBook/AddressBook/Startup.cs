@@ -1,6 +1,7 @@
 using AddressBook.App.Factories;
 using AddressBook.App.Services;
 using AddressBook.Filters;
+using AddressBook.Hubs;
 using AddressBook.Persistence;
 using AddressBook.Persistence.Context;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ContactHub = AddressBook.Hubs.ContactHub;
 
 namespace AddressBook
 {
@@ -25,6 +27,7 @@ namespace AddressBook
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSignalR();
             services.AddMvc(opt => opt.Filters.Add(typeof(ValidateModelStateAttribute)))
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
@@ -38,6 +41,7 @@ namespace AddressBook
         {
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IUseCaseFactory, UseCaseFactory>();
+            services.AddSingleton<ContactHub>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +61,7 @@ namespace AddressBook
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<ContactHub>("/contactHub");
             });
         }
     }
