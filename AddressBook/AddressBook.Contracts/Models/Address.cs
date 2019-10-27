@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using AddressBook.Contracts.Validation;
 
 namespace AddressBook.Contracts.Models
@@ -13,10 +14,10 @@ namespace AddressBook.Contracts.Models
         public string AddressLine1 { get; set; }
         
         [StringLength(50)]
-        public string AddressLine2 { get; set; }
-        
+        public string AddressLine2 { get; set; } = string.Empty;
+
         [StringLength(50)]
-        public string AddressLine3 { get; set; }
+        public string AddressLine3 { get; set; } = string.Empty;
 
         [Required]
         [StringLength(50)]

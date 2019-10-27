@@ -51,6 +51,12 @@ namespace AddressBook.Persistence.Context
                 .Property(p => p.AddressLine1)
                 .IsRequired();
             modelBuilder.Entity<DbContact>()
+                .Property(p => p.AddressLine2)
+                .IsRequired();
+            modelBuilder.Entity<DbContact>()
+                .Property(p => p.AddressLine3)
+                .IsRequired();
+            modelBuilder.Entity<DbContact>()
                 .Property(p => p.City)
                 .IsRequired();
             modelBuilder.Entity<DbContact>()

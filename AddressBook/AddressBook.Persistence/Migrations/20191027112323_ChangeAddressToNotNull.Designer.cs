@@ -3,15 +3,17 @@ using System;
 using AddressBook.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AddressBook.Persistence.Migrations
 {
     [DbContext(typeof(AddressBookContext))]
-    partial class AddressBookContextModelSnapshot : ModelSnapshot
+    [Migration("20191027112323_ChangeAddressToNotNull")]
+    partial class ChangeAddressToNotNull
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

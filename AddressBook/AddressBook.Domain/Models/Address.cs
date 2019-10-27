@@ -30,8 +30,8 @@ namespace AddressBook.Domain.Models
             StringHelper.ThrowIfNullOrWhitespace(country, "Country can not be null or white space");
 
             AddressLine1 = addressLine1;
-            AddressLine2 = addressLine2;
-            AddressLine3 = addressLine3;
+            AddressLine2 = addressLine2 ?? string.Empty;
+            AddressLine3 = addressLine3 ?? string.Empty;
             City = city;
             State = state;
             Zip = zip;
