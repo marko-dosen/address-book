@@ -1,5 +1,7 @@
-﻿using AddressBook.Domain.Models;
+﻿using AddressBook.Contracts.Models;
+using Address = AddressBook.Domain.Models.Address;
 using BoundaryContact = AddressBook.Contracts.Models.Contact;
+using Contact = AddressBook.Domain.Models.Contact;
 
 namespace AddressBook.App.Mapping
 {
@@ -7,6 +9,14 @@ namespace AddressBook.App.Mapping
     {
         public static Contact CreateDomainContact(this BoundaryContact contact)
             => new Contact(
+                contact.Name,
+                contact.DateOfBirth,
+                CreateDomainAddress(contact),
+                contact.PhoneNumbers);
+
+        public static Contact CreateDomainContactWithId(this ContactWithId contact)
+            => new Contact(
+                contact.Id,
                 contact.Name,
                 contact.DateOfBirth,
                 CreateDomainAddress(contact),

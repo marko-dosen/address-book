@@ -107,7 +107,6 @@ namespace AddressBook.Persistence
 
         private void UpdateContactProperties(DbContact dbContact, Contact contact)
         {
-            dbContact.Id = contact.Id;
             dbContact.AddressLine1 = contact.Address?.AddressLine1;
             dbContact.AddressLine2 = contact.Address?.AddressLine2;
             dbContact.AddressLine3 = contact.Address?.AddressLine3;

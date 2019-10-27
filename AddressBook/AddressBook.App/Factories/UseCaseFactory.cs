@@ -15,5 +15,17 @@ namespace AddressBook.App.Factories
 
         public CreateContactUseCase CreateContactUseCase()
             => new CreateContactUseCase(_repository);
+
+        public GetContactUseCase GetContactUseCase()
+            => new GetContactUseCase(_repository);
+
+        public GetContactsUseCase GetContactsUseCase()
+            => new GetContactsUseCase(_repository);
+
+        public UpdateContactUseCase UpdateContactUseCase()
+            => new UpdateContactUseCase(_repository);
+
+        public DeleteContactUseCase DeleteContactUseCase()
+            => new DeleteContactUseCase(_repository);
     }
 }

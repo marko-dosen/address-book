@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AddressBook.Contracts.Models
 {
+    /// <summary>
+    /// Base contact model.
+    /// </summary>
     public class Contact
     {
         [Required]

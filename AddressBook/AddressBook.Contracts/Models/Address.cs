@@ -3,6 +3,9 @@ using AddressBook.Contracts.Validation;
 
 namespace AddressBook.Contracts.Models
 {
+    /// <summary>
+    /// Base address model.
+    /// </summary>
     public class Address
     {
         [Required]

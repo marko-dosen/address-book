@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20191026121335_Initial.cs" />
+    <Compile Remove="Migrations\20191026121335_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20191027105726_RestoreMissingIndex.cs" />
+    <Compile Remove="Migrations\20191027105726_RestoreMissingIndex.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
