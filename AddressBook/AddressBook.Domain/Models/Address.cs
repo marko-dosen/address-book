@@ -1,5 +1,4 @@
-﻿using System;
-using AddressBook.Domain.Helpers;
+﻿using AddressBook.Domain.Helpers;
 using AddressBook.Domain.Kernel;
 
 namespace AddressBook.Domain.Models

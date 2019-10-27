@@ -8,8 +8,7 @@ namespace AddressBook.App.UseCases
     public class CreateContactUseCase
     {
         private readonly IContactRepository _repository;
-
-
+        
         public CreateContactUseCase(IContactRepository repository)
         {
             _repository = repository;

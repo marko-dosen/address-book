@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Threading.Tasks;
-using AddressBook.App.Services;
-using AddressBook.App.UseCases;
+using AddressBook.App.Exceptions;
+using AddressBook.App.Factories;
 using AddressBook.Contracts.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AddressBook.Controllers
@@ -12,11 +12,11 @@ namespace AddressBook.Controllers
     [ApiController]
     public class ContactController : ControllerBase
     {
-        private readonly IContactRepository _repository;
+        private readonly IUseCaseFactory _useCaseFactory;
 
-        public ContactController(IContactRepository repository)
+        public ContactController(IUseCaseFactory useCaseFactory)
         {
-            _repository = repository;
+            _useCaseFactory = useCaseFactory;
         }
 
         [HttpPost]
@@ -24,8 +24,13 @@ namespace AddressBook.Controllers
         {
             try
             {
-                CreateContactUseCase useCase = new CreateContactUseCase(_repository);
-                return Ok(useCase.Execute(contact));
+                Domain.Models.Contact result = _useCaseFactory.CreateContactUseCase().Execute(contact);
+                var resourcePath = new Uri($"{Request.GetDisplayUrl()}/{result.Id}");
+                return Created(resourcePath, result);
+            }
+            catch (ContactAlreadyExistsException e)
+            {
+                return StatusCode(StatusCodes.Status422UnprocessableEntity, e);
             }
             catch (Exception e)
             {
