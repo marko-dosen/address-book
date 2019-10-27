@@ -2,6 +2,7 @@ using AddressBook.App.Factories;
 using AddressBook.App.Services;
 using AddressBook.Filters;
 using AddressBook.Hubs;
+using AddressBook.Middlewares;
 using AddressBook.Persistence;
 using AddressBook.Persistence.Context;
 using Microsoft.AspNetCore.Builder;
@@ -26,19 +27,18 @@ namespace AddressBook
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            RegisterDependencies(services);
+
             services.AddControllers();
             services.AddSignalR();
             services.AddMvc(opt => opt.Filters.Add(typeof(ValidateModelStateAttribute)))
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
-            services.AddDbContext<AddressBookContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("AddressBookDb")));
-
-            RegisterDependencies(services);
         }
 
         private void RegisterDependencies(IServiceCollection services)
         {
+            services.AddDbContext<AddressBookContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("AddressBookDb")));
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IUseCaseFactory, UseCaseFactory>();
             services.AddSingleton<IHub<ContactHub>, ContactHub>();
@@ -51,6 +51,8 @@ namespace AddressBook
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseOptions();
 
             app.UseHttpsRedirection();
 

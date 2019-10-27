@@ -81,11 +81,13 @@ namespace AddressBook.Controllers
         }
 
         [HttpPut]
-        public IActionResult Put(ContactWithId contact)
+        public async Task<IActionResult> Put(ContactWithId contact)
         {
             try
             {
-                return Ok(_useCaseFactory.UpdateContactUseCase().Execute(contact));
+                ContactWithId result = _useCaseFactory.UpdateContactUseCase().Execute(contact);
+                await _hub.SendUpdateAsync(MessageType.ContactUpdate, result);
+                return Ok(result);
             }
             catch (ContactAlreadyExistsException e)
             {
@@ -102,11 +104,12 @@ namespace AddressBook.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             try
             {
                 _useCaseFactory.DeleteContactUseCase().Execute(id);
+                await  _hub.SendUpdateAsync(MessageType.ContactDelete, id);
                 return Ok();
             }
             catch (ContactNotFoundException)
