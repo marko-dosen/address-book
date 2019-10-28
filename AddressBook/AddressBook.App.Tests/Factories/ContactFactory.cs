@@ -14,6 +14,16 @@ namespace AddressBook.App.Tests.Factories
                 DateOfBirth = DateTime.Now
             };
 
+        public static ContactWithId CreateContactWithId()
+            => new ContactWithId
+            {
+                Id = Guid.NewGuid(),
+                Address = CreateAddress(),
+                Name = "Marko Markovic",
+                PhoneNumbers = CreatePhoneNumbers(),
+                DateOfBirth = DateTime.Now
+            };
+
         private static Address CreateAddress()
             => new Address
             {
